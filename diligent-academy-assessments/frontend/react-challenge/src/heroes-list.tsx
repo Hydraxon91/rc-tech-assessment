@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { callApi } from "./call-api";
 import Hero from "./interfaces/hero";
 import HeroListItem from "./components/HeroListItem";
-
+import './Styling/HeroList.css'
 
 function HeroesList() {
   const [heroes, setHeroes] = useState<Hero[]>([]);
@@ -46,15 +46,15 @@ function HeroesList() {
   return (
     <>
       <h2>Heroes</h2>
-      <ul style={{ listStyleType: 'none', padding: 0 }}>
-        {heroes.map((hero)=>(
+      <div className="hero-list">
+        {heroes.map((hero) => (
           <HeroListItem 
             key={hero.id} 
             hero={hero}
             onToggleAvailability={toggleHeroAvailability}
-          ></HeroListItem>
+          />
         ))}
-      </ul>
+      </div>
     </>
   );
 }
