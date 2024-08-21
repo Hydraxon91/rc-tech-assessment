@@ -6,14 +6,21 @@ import HeroListItem from "./components/HeroListItem";
 
 function HeroesList() {
   const [heroes, setHeroes] = useState<Hero[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchHeroes = async () => {
+      setLoading(true);
+      setError(null);
+
       try {
         const heroList = await callApi<Hero[]>('heroes');
         setHeroes(heroList);
       } catch (error) {
-        console.error("Failed to fetch heroes:", error);
+        setError('Failed to fetch heroes.');
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -27,6 +34,14 @@ function HeroesList() {
       )
     );
   };
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   return (
     <>
