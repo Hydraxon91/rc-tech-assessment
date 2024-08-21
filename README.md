@@ -1,3 +1,4 @@
+-Szabo Bence
 # rc-tech-assessment
 ARC tech assessment libraries
 Budapest site - Audit, Risk and Compliance pillar.
